@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "foo-bucket" {
     Name = "foo-${data.aws_caller_identity.current.account_id}"
   }
   versioning {
-    enabled = true
+    enabled = false
   }
   logging {
     target_bucket = "${aws_s3_bucket.log_bucket.id}"
@@ -21,7 +21,7 @@ resource "aws_s3_bucket" "foo-bucket" {
       }
     }
   }
-  acl           = "private"
+  acl           = "public"
   replication_configuration {
     role = aws_iam_role.replication.arn
     rules {
